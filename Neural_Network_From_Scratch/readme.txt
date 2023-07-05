@@ -1,4 +1,4 @@
-To get more familiar with Neural Networks, I am writing one from Scratch, not using Tensorflow or Pytorch.  
+To get more familiar with Neural Networks, I am writing one from Scratch, just using numpy.  
 
 https://www.youtube.com/watch?v=w8yWXqWQYmU&ab_channel=SamsonZhang - interesting Tutorial about it  
 
