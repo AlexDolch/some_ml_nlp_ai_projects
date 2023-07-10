@@ -5,3 +5,5 @@ https://www.youtube.com/watch?v=9RN2Wr8xvro&ab_channel=BotAcademy - Tutorial wit
 https://www.youtube.com/watch?v=pauPCy_s0Ok&ab_channel=TheIndependentCode - Another one with focus on the math
 
 https://www.kaggle.com/competitions/digit-recognizer - underlying kaggle competition  
+
+I also use that to learn a bit of Julia and compare the speed of the two languages, later on.
