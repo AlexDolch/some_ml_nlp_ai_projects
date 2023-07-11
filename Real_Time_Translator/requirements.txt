@@ -1,0 +1,6 @@
+Will update these later:
+- vosk
+- pyttsx3
+- pyaudio
+- transformers
+etc
