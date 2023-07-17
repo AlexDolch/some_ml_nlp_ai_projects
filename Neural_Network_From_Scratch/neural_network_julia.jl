@@ -1,27 +1,25 @@
 using Random
 using CSV
+using DataFrames
 
-data = CSV.read("urpathto/train.csv")
-
+data = CSV.read("C:/Users/AlexD/Desktop/Coding/Small Projects/Neural_Network_From_Scratch/train.csv", DataFrame)
 data = Matrix(data)
 
-# Shuffle data
 Random.shuffle!(data)
 
-# Separate development and training data
-data_dev = data[:, 1:1000]'
+data_dev = data[1:1000, 2:end]'
 Y_dev = data_dev[:, 1]
 X_dev = data_dev[:, 2:end] / 255.0
 
-data_train = data[:, 1001:end]'
+data_train = data[1001:end, 2:end]'
 Y_train = data_train[:, 1]
 X_train = data_train[:, 2:end] / 255.0
 
 function init_params()
-    W1 = randn(10, 784) * sqrt(1/784)
-    b1 = randn(10, 1) * sqrt(1/10)
-    W2 = randn(10, 10) * sqrt(1/20)
-    b2 = randn(10, 1) * sqrt(1/784)
+    W1 = randn(10, size(X_train, 2)) * sqrt(1/size(X_train, 2))
+    b1 = randn(10) * sqrt(1/10)
+    W2 = randn(maximum(Y_train) + 1, 10) * sqrt(1/10)
+    b2 = randn(maximum(Y_train) + 1) * sqrt(1/10)
     return W1, b1, W2, b2
 end
 
@@ -35,16 +33,16 @@ function softmax(Z)
 end
 
 function forward_prop(W1, b1, W2, b2, X)
-    Z1 = W1 * X + b1
+    Z1 = W1 * X' .+ b1
     A1 = ReLU(Z1)
-    Z2 = W2 * A1 + b2
+    Z2 = W2 * A1 .+ b2
     A2 = softmax(Z2)
     return Z1, A1, Z2, A2
 end
 
 function one_hot(Y)
-    one_hot_Y = zeros(Y.size, maximum(Y) + 1)
-    one_hot_Y[CartesianIndex.(1:Y.size, Y)] = 1
+    one_hot_Y = zeros(maximum(Y) + 1, length(Y))
+    one_hot_Y[CartesianIndex.(Y, 1:length(Y))] .= 1
     one_hot_Y = transpose(one_hot_Y)
     return one_hot_Y
 end
